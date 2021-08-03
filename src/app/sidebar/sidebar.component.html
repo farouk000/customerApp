@@ -1,0 +1,81 @@
+<nav
+  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+  <div class=" px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+    <a [routerLink]="['/']"
+      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+
+      <span class="hidden sm:block"> <img src="../assets/img/logo.png" alt="" width="150" height="70"
+          class="d-inline-block align-text-top"></span>
+    </a>
+
+
+    <!-- Collapse -->
+    <div>
+      <!-- Divider -->
+      <hr class="my-4 md:min-w-full" />
+      <!-- Heading --> 
+      <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+        ADMIN : 
+      </h6>
+      <!-- Navigation -->
+      <hr class="my-4 md:min-w-full" />
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a [routerLink]="['/dashboard']" class="text-xs uppercase py-3 font-bold block" routerLinkActive
+            #adminDashboard="routerLinkActive" [ngClass]="
+              adminDashboard.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500' ">
+            <i class="fas fa-tv mr-2 text-sm" [ngClass]="
+                adminDashboard.isActive ? 'opacity-75' : 'text-blueGray-300' "></i>
+            Tableau de bord
+          </a>
+        </li>
+
+        <li class="items-center">
+          <a [routerLink]="['/versions']" class="text-xs uppercase py-3 font-bold block" routerLinkActive
+            #adminSettings="routerLinkActive" [ngClass]="
+              adminSettings.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            ">
+            <i class="fas fa-tools mr-2 text-sm"
+              [ngClass]="adminSettings.isActive ? 'opacity-75' : 'text-blueGray-300' "></i>
+            Vérsions
+          </a>
+        </li>
+
+        <li class="items-center">
+          <a [routerLink]="['/customers']" class="text-xs uppercase py-3 font-bold block" routerLinkActive
+            #adminTables="routerLinkActive" [ngClass]="
+              adminTables.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            ">
+            <i class="fas fa-table mr-2 text-sm" [ngClass]="
+                adminTables.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "></i>
+            Clients
+          </a>
+        </li>
+   
+        <li class="items-center">
+          <a [routerLink]="['/admins']" class="text-xs uppercase py-3 font-bold block" routerLinkActive
+            #adminMaps2="routerLinkActive" [ngClass]="
+              adminMaps2.isActive
+                ? 'text-red-600 hover:text-red-700'
+                : 'text-blueGray-700 hover:text-blueGray-500'
+            ">
+            <i class="fas fa-users-cog mr-2 text-sm" [ngClass]="
+                adminMaps2.isActive ? 'opacity-75' : 'text-blueGray-300'
+              "></i>
+          Gestion des admins
+          </a>
+        </li>
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

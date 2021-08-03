@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg .navbar{
+    background-color: white;
+    border-bottom: solid 1px lightblue;
+} fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../assets/img/logo.png" alt="" width="150" height="70" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">               
+                <li *ngIf="test == true" class="nav-item">
+                    <a class="nav-link js-scroll-trigger" [routerLink]="['/dashboard']">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">A propos</a>
+                </li>                              
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                </li>
+                <li *ngIf="test == false" class="nav-item">
+                    <a class="nav-link js-scroll-trigger" routerLink="/login">Se connecter</a>
+                </li> 
+                <li *ngIf="test == true" class="nav-item">
+                    <button class ="b1" (click)="logout()"><a  class="nav-link js-scroll-trigger"> Se déconnecter <i class="fas fa-sign-out-alt"></i> </a></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

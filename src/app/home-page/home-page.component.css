@@ -1,0 +1,33 @@
+ 
+  section {
+	padding: 70px 0;
+  }
+
+  .footer .item.text p {
+	opacity:0.6;
+	margin-bottom:0;
+  }
+  
+  .footer .item.social {
+	text-align:center;
+  }
+  
+  @media (max-width:991px) {
+	.footer .item.social {
+	  text-align:center;
+	  margin-top:20px;
+	  margin-bottom:20px;
+	}
+  }
+  
+
+  h3 {
+	  text-align: center;
+	  color: darkgrey;
+  }
+  
+  .footer-dark .item.social > a:hover {
+	opacity:0.9;
+  }
+  
+ 

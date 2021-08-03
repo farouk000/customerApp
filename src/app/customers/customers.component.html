@@ -1,0 +1,455 @@
+<div>
+    <app-sidebar></app-sidebar>
+    <div class="relative md:ml-64 bg-blueGray-100">
+        <app-admin-navbar></app-admin-navbar>
+        <app-header></app-header>
+
+        <!--<app-offre-candidatures [idOffre]=1></app-offre-candidatures>-->
+        <div class="px-4 md:px-10 mx-auto w-full -m-24">
+            <div class="flex flex-wrap cm">
+                <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">                                                
+               <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+                 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                  <div class="rounded-t mb-0 px-4 py-3 border-0">
+                 <div class="flex flex-wrap items-center">
+                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                 <h3 class="font-semibold text-base text-blueGray-700">Liste des clients</h3>
+                </div>
+                <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                    <button
+                      class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button" data-bs-toggle="modal" data-bs-target="#addModal" >
+                      Ajouter
+                    </button>
+                  </div>
+                </div>
+            </div>
+            <div class="block w-full overflow-x-auto">
+                <!-- Projects table -->
+                <table  id="table_id" class="items-center w-full bg-transparent border-collapse">
+                <thead>
+                    <tr>
+                    <th
+                        class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                        Nom
+                    </th>
+                    <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                BackOffice Url
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+               FrontOffice Url
+            </th>
+            <th
+                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                Vérsion
+            </th >
+            <th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                --
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+                                                        
+                <tr *ngFor="let customer of customers; let i=index ">
+                <th
+                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                    {{customer.name}}
+                </th>
+                <td
+                    class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                    {{customer.backOfficeUrl}}
+                </td>
+                
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {{customer.frontOfficeUrl}}
+                </td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    {{customer.versionNumber}}        
+                </td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                    <span> <a><button data-bs-toggle="modal" data-bs-target="#viewModal" (click)="test(customer)"><i class="fas fa-eye" style="color: #18ac71;"></i></button></a> &nbsp;
+                        <a><button data-bs-toggle="modal" data-bs-target="#updateModal" (click)="test(customer)"><i class="fas fa-edit" style="color: #6366F1;"></i></button></a> &nbsp; 
+                     <a><button><i class="fas fa-trash-alt" style="color: red;" (click)="customerDelete(customer.id)"></i></button></a></span>           
+                        <!--update Modal -->
+                        <div class="modal fade" id="updateModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+                                        <div class="wrapper wrapper--w900">
+                                            <div class="card card-6">
+                                                <div class="card-heading">
+                                                    <h2 class="title">Modifier Client: {{t.name}}</h2>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form method="POST">
+                                                        <div class="form-row">
+                                                            <div class="name">Nom</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="name" [(ngModel)]="t.name">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">BackOffice</div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">Url</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="backOfficeUrl" [(ngModel)]="t.backOfficeUrl">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="name">Site</div>
+                                                            <div class="value">
+                                                                <select class="form-control" name="backOfficeSite" [(ngModel)]="t.backOfficeSite">
+                                                                    <option *ngFor="let Site of Sites" value="{{Site.name}}" >{{Site.name}}</option>                                            
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="name">Port</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="backOfficePort" [(ngModel)]="t.backOfficePort">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="name">Protocol</div>
+                                                            <div class="value">
+                                                                <select class="form-control" name="backOfficeProtocol" [(ngModel)]="t.backOfficeProtocol">
+                                                                    <option value="http" >http</option> 
+                                                                    <option value="https" >https</option>                                            
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">FrontOffice</div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">Url</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="frontOfficeUrl" [(ngModel)]="t.frontOfficeUrl">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="name">Site</div>
+                                                            <div class="value">
+                                                                <select class="form-control" name="frontOfficeSite" [(ngModel)]="t.frontOfficeSite">
+                                                                    <option *ngFor="let Site of Sites" value="{{Site.name}}" >{{Site.name}}</option>                                            
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="name">Port</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="frontOfficePort" [(ngModel)]="t.frontOfficePort">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="name">Protocol</div>
+                                                            <div class="value">
+                                                                <select class="form-control" name="frontOfficeProtocol" [(ngModel)]="t.frontOfficeProtocol">
+                                                                    <option value="http" >http</option> 
+                                                                    <option value="https" >https</option>                                            
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">Nom de BD</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="dBName" [(ngModel)]="t.dbName">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">Fichier Backup</div>
+                                                            <div class="value">
+                                                                <input class="input--style-6" type="text" name="backupFile" [(ngModel)]="t.backupFile">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-row">
+                                                            <div class="name">Vérsion</div>
+                                                            <div class="value">
+                                                                <select class="form-control" name="versionId" [(ngModel)]="t.versionId">
+                                                                    <option *ngFor="let Version of Versions" value="{{Version.id}}" >{{Version.versionNumber}}</option>                                            
+                                                                </select>
+                                                            </div>
+                                                        </div>                 
+                                                    </form>                           
+                                                </div> 
+                                                <button type="submit" value="Modifier" (click)="updateCustomer(t.id,t)"><span style="color:aliceblue;">Confirmer</span></button>                                                  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> 
+                    </td>      
+                        
+    
+  
+  
+  
+  <!--view Modal -->
+  <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="page-wrapper bg-dark p-t-100 p-b-50">
+                <div class="wrapper wrapper--w900">
+                    <div class="card card-6">
+                        <div class="card-heading">
+                            <h2 class="title">Client: {{t.name}}</h2>
+                        </div>
+                        <div class="card-body">
+                            <form class="fadmin">                               
+                                <div class="form-row">
+                                    <div class="name">Nom</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="name" [(ngModel)]="t.name" disabled>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">BackOffice</div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Url</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="backOfficeUrl" [(ngModel)]="t.backOfficeUrl" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Site</div>
+                                    <div class="value">
+                                        <select class="form-control" name="backOfficeSite" [(ngModel)]="t.backOfficeSite" disabled>
+                                            <option *ngFor="let Site of Sites" value="{{Site.name}}" >{{Site.name}}</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Port</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="backOfficePort" [(ngModel)]="t.backOfficePort" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Protocol</div>
+                                    <div class="value">
+                                        <select class="form-control" name="backOfficeProtocol" [(ngModel)]="t.backOfficeProtocol" disabled>
+                                            <option value="http" >http</option> 
+                                            <option value="https" >https</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">FrontOffice</div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Url</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="frontOfficeUrl" [(ngModel)]="t.frontOfficeUrl" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Site</div>
+                                    <div class="value">
+                                        <select class="form-control" name="frontOfficeSite" [(ngModel)]="t.frontOfficeSite" disabled>
+                                            <option *ngFor="let Site of Sites" value="{{Site.name}}" >{{Site.name}}</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Port</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="frontOfficePort" [(ngModel)]="t.frontOfficePort" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Protocol</div>
+                                    <div class="value">
+                                        <select class="form-control" name="frontOfficeProtocol" [(ngModel)]="t.frontOfficeProtocol">
+                                            <option value="http" >http</option> 
+                                            <option value="https" >https</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Nom de la BD </div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="dBName" [(ngModel)]="t.dbName" disabled>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Fichier Backup</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="backupFile" [(ngModel)]="t.backupFile" disabled>
+                                    </div>
+                                </div>                             
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Vérsion</div>
+                                    <div class="value">
+                                        <select class="form-control" name="versionId" [(ngModel)]="t.versionId" disabled>
+                                            <option *ngFor="let Version of Versions" value="{{Version.id}}" >{{Version.versionNumber}}</option>                                            
+                                        </select>
+                                    </div>
+                                </div>                                  
+                            </form>                           
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+                         </tr>           
+                </tbody>
+                </table>
+            </div>
+            </div>         
+                    </div>
+                </div>
+            </div>
+
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+
+<!--add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="page-wrapper bg-dark p-t-100 p-b-50">
+                <div class="wrapper wrapper--w900">
+                    <div class="card card-6">
+                        <div class="card-heading">
+                            <h4 class="title">Ajouter Client</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" class="fadmin">
+                                <div class="form-row">
+                                    <div class="name">Nom</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="name" [(ngModel)]="mycustomer.name">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">BackOffice</div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Url</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="backOfficeUrl" [(ngModel)]="mycustomer.backOfficeUrl">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Site</div>
+                                    <div class="value">
+                                        <select class="form-control" name="backOfficeSite" [(ngModel)]="mycustomer.backOfficeSite">
+                                            <option *ngFor="let Site of Sites" value="{{Site.name}}" >{{Site.name}}</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Port</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="backOfficePort" [(ngModel)]="mycustomer.backOfficePort">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Protocol</div>
+                                    <div class="value">
+                                        <select class="form-control" name="backOfficeProtocol" [(ngModel)]="mycustomer.backOfficeProtocol">
+                                            <option value="http" >http</option> 
+                                            <option value="https" >https</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">FrontOffice</div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Url</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="frontOfficeUrl" [(ngModel)]="mycustomer.frontOfficeUrl">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Site</div>
+                                    <div class="value">
+                                        <select class="form-control" name="frontOfficeSite" [(ngModel)]="mycustomer.frontOfficeSite">
+                                            <option *ngFor="let Site of Sites" value="{{Site.name}}" >{{Site.name}}</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Port</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="frontOfficePort" [(ngModel)]="mycustomer.frontOfficePort">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Protocol</div>
+                                    <div class="value">
+                                        <select class="form-control" name="frontOfficeProtocol" [(ngModel)]="mycustomer.frontOfficeProtocol">
+                                            <option value="http" >http</option> 
+                                            <option value="https" >https</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Nom de la BD</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="dbName" [(ngModel)]="mycustomer.dbName">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Fichier Backup</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="backupFile" [(ngModel)]="mycustomer.backupFile">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="name">Vérsion</div>
+                                    <div class="value">
+                                        <select class="form-control" name="versionId" [(ngModel)]="mycustomer.versionId">
+                                            <option *ngFor="let Version of Versions" value="{{Version.id}}" >{{Version.versionNumber}}</option>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>   
+                        <div style="background-color: white; height: 30px;">
+                            <button class="bg-dark btpop" type="submit" (click)="addCustomer()"><span class="spanpop">Ajouter</span></button>                      
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

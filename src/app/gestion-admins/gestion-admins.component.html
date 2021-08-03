@@ -1,0 +1,179 @@
+<div>
+  <app-sidebar></app-sidebar>
+  <div class="relative md:ml-64 bg-blueGray-100">
+      <app-admin-navbar></app-admin-navbar>
+      <app-header></app-header>
+      <div class="px-4 md:px-10 mx-auto w-full -m-24">
+          <div class="flex flex-wrap cm">
+              <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+                                  <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+                                      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+                                        <div class="rounded-t mb-0 px-4 py-3 border-0">
+                                          <div class="flex flex-wrap items-center">
+                                            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                              <h3 class="font-semibold text-base text-blueGray-700">Liste des Admins</h3>
+                                            </div>
+                                            <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                                              <button
+                                                class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="button" data-bs-toggle="modal" data-bs-target="#addModal">
+                                                Ajouter Admin
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="block w-full overflow-x-auto" style="width: 80%; margin-left: 10%;" >
+                                          <!-- Projects table -->
+                                          <table class="items-center w-full bg-transparent border-collapse">
+                                            <thead>
+                                              <tr>
+                                                <th
+                                                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                  Nom
+                                                </th>
+                                                <th
+                                                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                  Email
+                                                </th>
+                                                                                              
+                                                <th
+                                                  class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                  --
+                                                </th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              
+                                              <tr *ngFor="let admin of admins">
+                                                <th
+                                                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                  {{admin.firstName}} {{admin.lastName}} 
+                                                </th>
+                                                <th
+                                                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                  {{admin.email}}
+                                                </th>
+                                                                                                  
+                                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                  <span> <a><button data-bs-toggle="modal" data-bs-target="#updateModal" (click)="test(admin)"><i class="fas fa-edit" style="color: #6366F1;"></i></button></a> &nbsp;  
+                                                    <a><button><i class="fas fa-trash-alt" style="color: red;" (click)="adminDelete(admin.id)"></i></button></a></span>
+                                         
+<!--update Modal -->
+<div class="modal fade" id="updateModal"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body">
+        <div class="page-wrapper bg-dark p-t-100 p-b-50">
+            <div class="wrapper wrapper--w900">
+                <div class="card card-6">
+                    <div class="card-heading">
+                        <h2 class="title">Edit Admin</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="form-row">
+                                <div class="name">Nom</div>
+                                <div class="value">
+                                    <input class="form-control" type="text"  id="firstName" name="firstName"   [(ngModel)]="t.firstName">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Prénom</div>
+                                <div class="value">
+                                    <input class="form-control" type="text"  id="lastName" name="lastName"   [(ngModel)]="t.lastName">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Email</div>
+                                <div class="value">
+                                    <input class="form-control" type="email"  id="email" name="email"   [(ngModel)]="t.email">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Mot de passe</div>
+                                <div class="value">
+                                    <input class="form-control" type="password"  id="password" name="password"   [(ngModel)]="t.password">
+                                </div>
+                            </div>
+                                                           
+                        </form>                           
+                    </div> 
+
+                    <div style="background-color: white; height: 30px;">
+                      <button class="bg-dark btpop" type="submit" value="Modifier" (click)="updateAdmin(t.id,t)"><span class="spanpop">Confirmer</span></button>                      
+                  </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div> 
+
+
+
+                                                </td>
+                                              </tr>                                                                                    
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>                          
+                  </div>
+
+              </div>
+          </div>
+          <app-footer></app-footer>
+      </div>
+  </div>
+</div>
+
+<!--add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body">
+        <div class="page-wrapper bg-dark p-t-100 p-b-50">
+            <div class="wrapper wrapper--w900">
+                <div class="card card-6">
+                    <div class="card-heading">
+                        <h4 class="title">Ajouter Admin</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="form-row">
+                                <div class="name">Nom</div>
+                                <div class="value">
+                                    <input class="input--style-6" type="text" name="firstName" [(ngModel)]="myadmin.firstName">
+                                </div>
+                            </div>                                                                                      
+                            <div class="form-row">
+                                <div class="name">Prénom</div>
+                                <div class="value">
+                                    <input class="input--style-6" type="text" name="lastName"  [(ngModel)]="myadmin.lastName">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Email</div>
+                                <div class="value">
+                                    <input class="input--style-6" type="email" name="email" [(ngModel)]="myadmin.email">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Mot de passe</div>
+                                <div class="value">
+                                    <input class="input--style-6" type="password" name="password" [(ngModel)]="myadmin.password">
+                                </div>
+                            </div>                           
+                        </form>
+                    </div> 
+                    
+                    <div style="background-color: white; height: 30px;">
+                      <button class="bg-dark btpop" type="submit" value="Ajouter" (click)="addAdmin()"><span class="spanpop">Ajouter</span></button>                      
+                  </div>
+         </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
